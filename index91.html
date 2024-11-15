@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    let company = {
+        seles: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 600}],
+
+        development:{ 
+            web: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1000}],
+            web1: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1000}],
+            internals: [{name: 'Jack', salary: 1300}],
+            internals1: [{name: 'Jack', salary: 1200}]
+    }    
+    };
+
+    function getTotalSalary(department) {
+        if (Array.isArray(department)) {
+            return department.reduce((total, employe) => total + employe.salary, 0);
+        } else {
+            let sum = 0;
+            for (let sdep of Object.values(department)) {
+                sum += getTotalSalary(sdep);
+            }
+            return sum;
+        }
+    }
+
+    let totalSalary = getTotalSalary(company);
+    console.log(totalSalary); 
+
+    </script>
+</body>
+</html>
